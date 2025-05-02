@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Produto } from './Produto';
 import { SocialAccount } from '../../social-accounts/entity/SocialAccount';
+import { LinkEvaluation } from './LinkEvaluation';
 
 @Entity()
 export class User {
@@ -33,4 +34,9 @@ export class User {
 
   @OneToMany(() => SocialAccount, (sa) => sa.user, { cascade: true })
   socialAccounts: SocialAccount[];
+
+  @OneToMany(() => LinkEvaluation, (linkEvaluation) => linkEvaluation.user, {
+    cascade: true,
+  })
+  linkEvaluations: LinkEvaluation[];
 }

@@ -36,7 +36,15 @@ export class AiService {
       ],
     });
 
-    return response.text!;
+    const scoreText = response.text!.trim();
+    const score = parseInt(scoreText, 10);
+
+    if (isNaN(score) || score < 0 || score > 10) {
+      console.error('Resposta inesperada da IA:', scoreText);
+      throw new Error('A IA retornou um score inválido.');
+    }
+
+    return score;
   }
 
   private getDataUser(user: User): string {

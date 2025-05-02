@@ -13,6 +13,8 @@ import { User } from './entity/User';
 import { SocialAccountsService } from 'src/social-accounts/social-accounts.service';
 import { SocialAccount } from 'src/social-accounts/entity/SocialAccount';
 import { AiService } from 'src/ai/ai.service';
+import { LinkEvaluation } from './entity/LinkEvaluation';
+import { LinkEvaluationService } from './link-evaluations.service';
 
 @Injectable()
 export class UsersService {
@@ -21,6 +23,7 @@ export class UsersService {
     private readonly userRepo: Repository<User>,
     private socialService: SocialAccountsService,
     private aiService: AiService,
+    private linkEvaluationService: LinkEvaluationService,
   ) {}
 
   async createUser(dto: CreateUserDto): Promise<User> {
@@ -53,13 +56,17 @@ export class UsersService {
     const socialContent = await this.getSocialContent(user.socialAccounts);
     const websiteContent = await this.extractWebsite(url);
 
-    const response = await this.aiService.pesquisar(
+    const score = await this.aiService.pesquisar(
       user,
       socialContent,
       websiteContent,
     );
 
-    return response;
+    const evaluation = new LinkEvaluation();
+    evaluation.url = url;
+    evaluation.score = score;
+    evaluation.user = user;
+    await this.linkEvaluationService.create(evaluation);
   }
 
   async getSocialContent(accounts: SocialAccount[]) {
@@ -70,20 +77,22 @@ export class UsersService {
       return allSocialData;
     }
 
-    accounts.map(async (account) => {
-      try {
-        const data = await this.socialService.fetchSocialData(account);
-        allSocialData[account.provider] = data;
-      } catch (error) {
-        console.error(
-          `Erro ao buscar dados do ${account.provider} para o usuário ${account.user.id}:`,
-          error.message,
-        );
-        allSocialData[account.provider] = {
-          error: `Falha ao buscar dados: ${error.message}`,
-        };
-      }
-    });
+    await Promise.all(
+      accounts.map(async (account) => {
+        try {
+          const data = await this.socialService.fetchSocialData(account);
+          allSocialData[account.provider] = data;
+        } catch (error) {
+          console.error(
+            `Erro ao buscar dados do ${account.provider} para o usuário ${account.user.id}:`,
+            error.message,
+          );
+          allSocialData[account.provider] = {
+            error: `Falha ao buscar dados: ${error.message}`,
+          };
+        }
+      }),
+    );
 
     return allSocialData;
   }
