@@ -16,9 +16,6 @@ import { AiService } from 'src/ai/ai.service';
 import { LinkEvaluation } from './entity/LinkEvaluation';
 import { LinkEvaluationService } from './link-evaluations.service';
 
-const CHROME_EXEC_PATH_RENDER =
-  '/opt/render/.cache/puppeteer/chrome/linux-136.0.7103.49/chrome-linux64/chrome';
-
 @Injectable()
 export class UsersService {
   constructor(
@@ -103,7 +100,6 @@ export class UsersService {
   async extractWebsite(url: string): Promise<string> {
     puppeteer.use(StealthPlugin);
 
-    // Define as opções de lançamento
     const launchOptions: Parameters<typeof puppeteer.launch>[0] = {
       headless: true,
       args: [
@@ -113,10 +109,6 @@ export class UsersService {
         '--disable-gpu',
       ],
     };
-
-    if (process.env.NODE_ENV === 'production') {
-      launchOptions.executablePath = CHROME_EXEC_PATH_RENDER;
-    }
 
     const browser = await puppeteer.launch(launchOptions);
     const page = await browser.newPage();
