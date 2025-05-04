@@ -1,0 +1,218 @@
+.input-error {
+	border: 1px solid red !important;
+}
+
+.error-message.file-error {
+	position: static;
+	margin-top: 4px;
+}
+
+#form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+#form-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 150px 0;
+}
+
+#form-section > form > div {
+	display: flex;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+#form-section label {
+	min-width: 150px;
+	text-align: right;
+	padding-right: 10px;
+	font-size: 14px;
+}
+
+#form-section input,
+#form-section textarea {
+	font-size: 14px;
+	width: 100%;
+	background: transparent;
+	border: 1px solid #a8a9b0;
+	border-radius: 3px;
+}
+
+#form-section input:focus,
+#form-section textarea:focus {
+	border: 1px solid #3f78e1;
+	outline: none;
+}
+
+#form-section textarea {
+	resize: none;
+}
+
+#form-section > #form {
+	margin-right: 150px;
+	display: flex;
+	flex-direction: column;
+}
+#form-section > #form > .form-element {
+	margin-bottom: 10px;
+}
+
+#enviar {
+	font-size: 14px;
+	width: 150px;
+	height: 45px;
+	background: black;
+	border: 1px solid white;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 0 2px 0px white;
+	transition: all 0.1s;
+	display: block;
+	margin: 0 auto;
+	margin-left: 210px;
+}
+
+#enviar:hover {
+	box-shadow: 0 5px 0px white;
+	transform: translateY(-3px);
+}
+
+#enviar:hover {
+	background-color: green;
+}
+
+#enviar:active {
+	box-shadow: 0 2px 0px white;
+	transform: translateY(0);
+}
+
+#form-section .input-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+	align-items: center;
+}
+
+.error-message {
+	color: red;
+	font-size: 0.8em;
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 100%;
+}
+
+.register-button {
+	background-color: black;
+	border: 1px solid white;
+	padding: 6px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.register-button:hover {
+	background-color: #222;
+}
+
+#redes-sociais-container {
+	width: 100%;
+	display: flex;
+	gap: 5px;
+}
+
+.redes-sociais {
+	border: none;
+	width: 100%;
+	padding: 12px 0;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#google {
+	background-color: #f64823;
+}
+
+#google:hover {
+	background-color: #f14956;
+}
+
+#facebook {
+	background-color: #1f7bf2;
+}
+
+#facebook:hover {
+	background-color: #315eba;
+}
+
+.esports-links {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	align-items: center;
+	width: 100%;
+}
+
+.input-pair {
+	display: flex;
+	gap: 5px;
+	width: 100%;
+}
+
+#remover {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	background-color: #ff4d4d;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#remover:hover {
+	background-color: #e60000;
+}
+
+#remover img {
+	width: 20px;
+}
+
+#novo-link {
+	width: 80px;
+	height: 30px;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+#novo-link:hover {
+	border: 1px solid white;
+}
+
+.file-input-container input[type="file"] {
+	display: none;
+}
+
+.input-container > label {
+	text-align: center !important;
+}
+
+.file-input-label {
+	background: black;
+	color: white;
+	padding: 6px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+.file-input-label:hover {
+	border: 1px solid white;
+}

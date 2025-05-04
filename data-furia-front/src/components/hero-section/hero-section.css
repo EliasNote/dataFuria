@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap");
+
+#hero-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	justify-content: space-between;
+	background-image: radial-gradient(
+			ellipse at center,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0.9) 75%
+		),
+		linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("../../assets/background.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: auto;
+	background-blend-mode: multiply;
+	text-align: center;
+}
+
+#hero-section img {
+	width: 180px;
+	margin-top: 50px;
+}
+
+#hero-section p {
+	font-family: "Open Sans", sans-serif;
+	margin-top: -50px;
+	max-width: 1200px;
+	font-size: 20px;
+}
+
+#comecar {
+	font-size: 14px;
+	width: 200px;
+	height: 45px;
+	background-color: black;
+	border: 1px solid white;
+	border-radius: 5px;
+	margin-bottom: 8%;
+	cursor: pointer;
+	box-shadow: 0 2px 0px white;
+	transition: all 0.1s;
+}
+
+#comecar:hover {
+	box-shadow: 0 5px 0px white;
+	transform: translateY(-3px);
+}
+
+#comecar:active {
+	box-shadow: 0 2px 0px white;
+	transform: translateY(0);
+}
+
+h1 {
+	font-family: "Montserrat", sans-serif;
+	margin-top: -120px;
+}
