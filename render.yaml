@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: data-furia-api
+    env: node
+    region: oregon
+    branch: main
+    rootDir: data-furia-api
+    buildCommand: |
+      npm install --prefix data-furia-api
+      npm run build --prefix data-furia-api
+    startCommand: npm run start:prod --prefix data-furia-api
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: db-furia
+      - key: DB_PORT
+        fromDatabase:
+          name: db-furia
+      - key: DB_NAME
+        fromDatabase:
+          name: db-furia
+      - key: DB_USER
+        fromDatabase:
+          name: db-furia
+      - key: DB_PASS
+        fromDatabase:
+          name: db-furia
