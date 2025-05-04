@@ -99,18 +99,7 @@ export class UsersService {
 
   async extractWebsite(url: string): Promise<string> {
     puppeteer.use(StealthPlugin);
-
-    const launchOptions: Parameters<typeof puppeteer.launch>[0] = {
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-      ],
-    };
-
-    const browser = await puppeteer.launch(launchOptions);
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
     try {
