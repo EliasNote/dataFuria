@@ -4,7 +4,7 @@ import "./compras-modal.css";
 import CloseIcon from "../../assets/close-button.svg";
 import React, { useState } from "react";
 
-interface Compra {
+export interface Compra {
 	id: number;
 	nome: string;
 	valor: string;

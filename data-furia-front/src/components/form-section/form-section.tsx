@@ -1,5 +1,5 @@
 import { Field, Form, Formik, ErrorMessage, FieldArray } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import "./form-section.css";
 import * as Yup from "yup";
 import ComprasModal, { Compra } from "./ComprasModal";
@@ -12,7 +12,7 @@ const validationSchema = Yup.object().shape({
 		.required("Campo obrigatório"),
 	endereco: Yup.string().required("Campo obrigatório"),
 	cpf: Yup.string().required("Campo obrigatório"),
-	documento: Yup.mixed()
+	documento: Yup.mixed<File>()
 		.required("Documento é obrigatório")
 		.test(
 			"fileFormat",
@@ -27,7 +27,6 @@ const validationSchema = Yup.object().shape({
 	compras: Yup.string(),
 	esportsLinks: Yup.array().of(
 		Yup.object().shape({
-			site: Yup.string(),
 			url: Yup.string().url("URL inválida"),
 		})
 	),
@@ -36,8 +35,7 @@ const validationSchema = Yup.object().shape({
 const FormSection = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const handleOpenModal = (e: React.MouseEvent) => {
-		e.preventDefault();
+	const handleOpenModal = () => {
 		setIsModalOpen(true);
 	};
 
@@ -47,7 +45,7 @@ const FormSection = () => {
 
 	const handleSaveCompras = (
 		compras: Compra[],
-		setFieldValue: (field: string, value: any) => void
+		setFieldValue: (field: string, value: string) => void
 	) => {
 		setFieldValue("compras", JSON.stringify(compras));
 		setIsModalOpen(false);
@@ -67,7 +65,7 @@ const FormSection = () => {
 					atividades: "",
 					eventos: "",
 					compras: "",
-					esportsLinks: [{ site: "", url: "" }],
+					esportsLinks: [{ url: "" }],
 				}}
 				onSubmit={(values) => {
 					const finalValues = {
@@ -224,11 +222,6 @@ const FormSection = () => {
 									<div className="esports-links">
 										{values.esportsLinks.map((_, idx) => (
 											<div key={idx} className="input-pair">
-												<ErrorMessage
-													name={`esportsLinks.${idx}.url`}
-													component="div"
-													className="error-message"
-												/>
 												<Field
 													type="url"
 													name={`esportsLinks.${idx}.url`}
