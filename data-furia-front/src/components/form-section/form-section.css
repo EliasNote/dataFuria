@@ -27,16 +27,24 @@
 }
 
 #form-section label {
-	min-width: 150px;
+	min-width: 140px;
 	text-align: right;
 	padding-right: 10px;
 	font-size: 14px;
 }
 
+.no-margin {
+	margin-right: 55px;
+}
+
+.no-margin label {
+	min-width: 70px !important;
+}
+
 #form-section input,
 #form-section textarea {
-	font-size: 14px;
 	width: 100%;
+	font-size: 14px;
 	background: transparent;
 	border: 1px solid #a8a9b0;
 	border-radius: 3px;
@@ -52,16 +60,11 @@
 	resize: none;
 }
 
-#form-section > #form {
-	margin-right: 150px;
-	display: flex;
-	flex-direction: column;
-}
 #form-section > #form > .form-element {
 	margin-bottom: 10px;
 }
 
-#enviar {
+.passos {
 	font-size: 14px;
 	width: 150px;
 	height: 45px;
@@ -73,27 +76,26 @@
 	transition: all 0.1s;
 	display: block;
 	margin: 0 auto;
-	margin-left: 210px;
 }
 
-#enviar:hover {
+.passos:hover {
 	box-shadow: 0 5px 0px white;
 	transform: translateY(-3px);
+}
+
+.passos:active {
+	box-shadow: 0 2px 0px white;
+	transform: translateY(0);
 }
 
 #enviar:hover {
 	background-color: green;
 }
 
-#enviar:active {
-	box-shadow: 0 2px 0px white;
-	transform: translateY(0);
-}
-
 #form-section .input-container {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	min-width: 230px;
 	position: relative;
 	align-items: center;
 }
@@ -131,6 +133,13 @@
 	padding: 12px 0;
 	border-radius: 3px;
 	cursor: pointer;
+}
+
+.file-upload {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center !important;
 }
 
 #google {
@@ -196,6 +205,9 @@
 	border: 1px solid white;
 }
 
+#proximo {
+	margin-left: 118px;
+}
 .input-container > label {
 	text-align: center !important;
 }
