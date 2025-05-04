@@ -13,15 +13,20 @@ services:
       - key: DB_HOST
         fromDatabase:
           name: db-furia
+          property: host
       - key: DB_PORT
         fromDatabase:
           name: db-furia
+          property: port
       - key: DB_NAME
         fromDatabase:
           name: db-furia
+          property: database
       - key: DB_USER
         fromDatabase:
           name: db-furia
+          property: user
       - key: DB_PASS
         fromDatabase:
           name: db-furia
+          property: password
