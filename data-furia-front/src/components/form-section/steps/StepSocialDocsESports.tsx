@@ -1,12 +1,11 @@
 import React from "react";
 import { useFormikContext } from "formik";
 import { FormValues } from "../form-section";
+import { apiUrl } from "../../../service/furia-api";
 
 interface Props {
 	userId: number;
 }
-
-const OAUTH_ORIGIN = "http://localhost:3000";
 
 const StepSocialDocsESports: React.FC<Props> = ({ userId }) => {
 	const { setFieldValue } = useFormikContext<FormValues>();
@@ -16,14 +15,14 @@ const StepSocialDocsESports: React.FC<Props> = ({ userId }) => {
 			height = 600;
 		const left = window.screenX + (window.outerWidth - width) / 2;
 		const top = window.screenY + (window.outerHeight - height) / 2;
-		const authUrl = `${OAUTH_ORIGIN}/social/${userId}/${provider}`;
+		const authUrl = `${apiUrl}/social/${userId}/${provider}`;
 		const popup = window.open(
 			authUrl,
 			`${provider}-login`,
 			`width=${width},height=${height},left=${left},top=${top}`
 		);
 		const listener = (e: MessageEvent) => {
-			if (e.origin !== OAUTH_ORIGIN) return;
+			if (e.origin !== apiUrl) return;
 			if (e.data.provider === provider && e.data.socialUserId) {
 				setFieldValue(`redesSociais.${provider}`, true);
 				window.removeEventListener("message", listener);

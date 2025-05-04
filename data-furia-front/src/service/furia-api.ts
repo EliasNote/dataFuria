@@ -13,8 +13,10 @@ interface CreateUserResponse {
 	id: number;
 }
 
+export const apiUrl = `${import.meta.env.BASE_URL}:${import.meta.env.PORT}`;
+
 export async function createUser(payload: CreateUserPayload): Promise<number> {
-	const res = await fetch("http://localhost:3000/users", {
+	const res = await fetch(`${apiUrl}/users`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(payload),
@@ -31,7 +33,7 @@ export async function uploadDocument(file: File, cpf: string): Promise<void> {
 	fd.append("file", file);
 
 	const res = await fetch(
-		`http://localhost:3000/file/upload?cpf=${encodeURIComponent(cpf)}`,
+		`${apiUrl}/file/upload?cpf=${encodeURIComponent(cpf)}`,
 		{
 			method: "POST",
 			headers: { cpf },
@@ -45,7 +47,7 @@ export async function uploadDocument(file: File, cpf: string): Promise<void> {
 }
 
 export async function extractUrl(url: string, cpf: string): Promise<void> {
-	const endpoint = `http://localhost:3000/users/extract?url=${encodeURIComponent(
+	const endpoint = `${apiUrl}/users/extract?url=${encodeURIComponent(
 		url
 	)}&cpf=${encodeURIComponent(cpf)}`;
 	const res = await fetch(endpoint, {
