@@ -2,7 +2,7 @@ import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./compras-modal.css";
 import CloseIcon from "../../assets/close-button.svg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export interface Compra {
 	id: number;
@@ -26,16 +26,22 @@ const compraSchema = Yup.object().shape({
 
 interface ComprasModalProps {
 	isOpen: boolean;
+	initialCompras?: Compra[];
 	onClose: () => void;
 	onSave: (compras: Compra[]) => void;
 }
 
 const ComprasModal: React.FC<ComprasModalProps> = ({
 	isOpen,
+	initialCompras = [],
 	onClose,
 	onSave,
 }) => {
-	const [compras, setCompras] = useState<Compra[]>([]);
+	const [compras, setCompras] = useState<Compra[]>(initialCompras);
+
+	useEffect(() => {
+		setCompras(initialCompras);
+	}, [initialCompras]);
 
 	if (!isOpen) return null;
 

@@ -1,119 +1,60 @@
-import React, { useState } from "react";
-import { useFormikContext, FieldArray, Field } from "formik";
-import ComprasModal, { Compra } from "../ComprasModal";
-import CloseIcon from "../../../assets/close-button.svg";
+import React from "react";
+import { useFormikContext } from "formik";
 import { FormValues } from "../form-section";
 
-const StepSocialDocsESports: React.FC = () => {
-	const { values, touched, errors, setFieldValue } =
-		useFormikContext<FormValues>();
+interface Props {
+	userId: number;
+}
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const handleOpenModal = () => setIsModalOpen(true);
-	const handleCloseModal = () => setIsModalOpen(false);
+const OAUTH_ORIGIN = "http://localhost:3000";
 
-	const handleSaveCompras = (lista: Compra[]) => {
-		setFieldValue("compras", JSON.stringify(lista));
-		setIsModalOpen(false);
+const StepSocialDocsESports: React.FC<Props> = ({ userId }) => {
+	const { setFieldValue } = useFormikContext<FormValues>();
+
+	const handleSocialClick = (provider: "google" | "facebook") => {
+		const width = 600,
+			height = 600;
+		const left = window.screenX + (window.outerWidth - width) / 2;
+		const top = window.screenY + (window.outerHeight - height) / 2;
+		const authUrl = `${OAUTH_ORIGIN}/social/${userId}/${provider}`;
+		const popup = window.open(
+			authUrl,
+			`${provider}-login`,
+			`width=${width},height=${height},left=${left},top=${top}`
+		);
+		const listener = (e: MessageEvent) => {
+			if (e.origin !== OAUTH_ORIGIN) return;
+			if (e.data.provider === provider && e.data.socialUserId) {
+				setFieldValue(`redesSociais.${provider}`, true);
+				window.removeEventListener("message", listener);
+				popup?.close();
+			}
+		};
+		window.addEventListener("message", listener);
 	};
 
 	return (
-		<>
-			<div className="file-upload">
-				<label htmlFor="documento">
-					Validação de identidade por IA
-					<br />
-					Documento RG ou CPF (PDF ou imagem):
-				</label>
-				<div className="input-container">
-					<input
-						id="documento"
-						name="documento"
-						type="file"
-						accept=".pdf,image/*"
-						hidden
-						onChange={(e) =>
-							setFieldValue("documento", e.currentTarget.files?.[0] || null)
-						}
-					/>
-					<label htmlFor="documento" className="file-input-label">
-						Selecione um documento
-					</label>
-					{touched.documento && errors.documento && (
-						<div className="error-message file-error">{errors.documento}</div>
-					)}
-				</div>
+		<div className="form-element">
+			<label>Vincular redes sociais</label>
+			<div className="input-container">
+				<button
+					type="button"
+					id="google"
+					className="redes-sociais"
+					onClick={() => handleSocialClick("google")}
+				>
+					Google
+				</button>
+				<button
+					type="button"
+					id="facebook"
+					className="redes-sociais"
+					onClick={() => handleSocialClick("facebook")}
+				>
+					Facebook
+				</button>
 			</div>
-			<div className="form-element">
-				<label htmlFor="compras">
-					Compras realizadas <br />
-					no último ano:
-				</label>
-				<div className="input-container">
-					<button
-						type="button"
-						className="register-button"
-						onClick={handleOpenModal}
-					>
-						Compras
-					</button>
-				</div>
-				<ComprasModal
-					isOpen={isModalOpen}
-					onClose={handleCloseModal}
-					onSave={handleSaveCompras}
-				/>
-			</div>
-
-			<div className="form-element">
-				<label htmlFor="redes-sociais">Vincular redes sociais</label>
-				<div className="input-container">
-					<div id="redes-sociais-container">
-						<button type="button" className="redes-sociais" id="google">
-							Google
-						</button>
-
-						<button type="button" className="redes-sociais" id="facebook">
-							Facebook
-						</button>
-					</div>
-				</div>
-			</div>
-			<div className="form-element">
-				<label>Perfis de e‑sports:</label>
-				<div className="input-container">
-					<FieldArray name="esportsLinks">
-						{({ push, remove }) => (
-							<div className="esports-links">
-								{values.esportsLinks.map((_, idx) => (
-									<div key={idx} className="input-pair">
-										<Field
-											type="url"
-											name={`esportsLinks.${idx}.url`}
-											placeholder="https://..."
-										/>
-										<button
-											type="button"
-											id="remover"
-											onClick={() => remove(idx)}
-										>
-											<img src={CloseIcon} alt="" />
-										</button>
-									</div>
-								))}
-								<button
-									type="button"
-									id="novo-link"
-									onClick={() => push({ site: "", url: "" })}
-								>
-									Novo link
-								</button>
-							</div>
-						)}
-					</FieldArray>
-				</div>
-			</div>
-		</>
+		</div>
 	);
 };
 
