@@ -13,7 +13,7 @@ interface CreateUserResponse {
 	id: number;
 }
 
-export const apiUrl = `${import.meta.env.BASE_URL}:${import.meta.env.PORT}`;
+export const apiUrl = `${import.meta.env.VITE_BASE_URL}`;
 
 export async function createUser(payload: CreateUserPayload): Promise<number> {
 	const res = await fetch(`${apiUrl}/users`, {
