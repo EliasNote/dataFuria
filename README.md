@@ -61,7 +61,6 @@ cd dataFuria
 ```bash
 cd data-furia-api
 npm install
-npm run start:dev    # inicia a API em modo de desenvolvimento
 ```
 
 ### Frontend
@@ -69,7 +68,6 @@ npm run start:dev    # inicia a API em modo de desenvolvimento
 ```bash
 cd ../data-furia-front
 npm install
-npm run dev          # inicia o frontend em modo de desenvolvimento
 ```
 
 ## ⚙️ Configuração de Variáveis de Ambiente
@@ -106,11 +104,22 @@ Para parar e remover containers, redes e volumes criados:
 docker-compose down
 ```
 
-## ▶️ Execução
-
-- Acesse a API em `http://localhost:3000`
-- Frontend disponível em `http://localhost:5173` (ou porta indicada pelo Vite)
-
 ## 📦 Deploy
 
 - 🌐 Confira a versão pública em: **[Data Furia](https://eliasnote.github.io/dataFuria/)** 🚀
+
+## ▶️ Execução
+
+**API:** Para iniciar a API em modo de desenvolvimento:
+
+```bash
+cd data-furia-api
+npm run start:dev
+```
+
+**Frontend:** Para iniciar o frontend:
+
+```bash
+cd data-furia-front
+npm run dev
+```
