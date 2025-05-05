@@ -73,6 +73,21 @@ DB_NAME=data_furia
 VITE_BASE_URL=http://localhost:3000
 ```
 
+## 🐳 Docker Compose
+
+Para subir o banco de dados PostgreSQL via Docker Compose:
+
+```bash
+cd data-furia-api
+docker-compose up -d
+```
+
+Para parar e remover containers, redes e volumes criados:
+
+```bash
+docker-compose down
+```
+
 ## ▶️ Execução
 
 - Acesse a API em `http://localhost:3000`
