@@ -13,6 +13,24 @@ Este repositório contém dois módulos principais:
 - **API Backend**: Desenvolvida em NestJS com TypeORM, Puppeteer + Cheerio para extração de conteúdo e AI para validação de documentos e links.
 - **Frontend**: Aplicação React + TypeScript (Vite) com Formik para coleta de dados e integração de redes sociais.
 
+## 👨‍💻 Desenvolvedor
+
+Elias Mathias Sand: [elias.coder1@gmail.com](mailto:elias.coder1@gmail.com) - [GitHub](https://github.com/EliasNote) - [LinkedIn](https://www.linkedin.com/in/elias-mathias-sand/)
+
+## 🎯 Desafio do Projeto
+
+**Challenge #2: Know Your Fan [HARD]**
+
+**Objetivo:**  
+Desenvolver um app ou solução (ex: notebook Python) que colete o máximo de informações sobre você mesmo como um fã de e-sports. _Know Your Fan_ é uma estratégia bem utilizada por clubes para conhecer mais do fã e assim oferecer experiências e serviços exclusivos.
+
+**Proposta:**
+
+- Coletar dados básicos (nome, endereço, CPF) e histórico de interesses, atividades, eventos e compras do último ano.
+- Realizar upload de documentos e validar a identificação da pessoa utilizando AI.
+- Vincular redes sociais ao perfil (Google, Facebook), lendo interações e atividades relacionadas a organizações de e-sports (ex: FURIA).
+- Compartilhar links de perfis em sites de e-sports e validar, via AI, se o conteúdo é relevante ao perfil do usuário.
+
 ## 🚀 Tecnologias
 
 ### Backend
@@ -34,7 +52,7 @@ Este repositório contém dois módulos principais:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/elias/dataFuria.git
+git clone https://github.com/EliasNote/dataFuria.git
 cd dataFuria
 ```
 
@@ -49,7 +67,7 @@ npm run start:dev    # inicia a API em modo de desenvolvimento
 ### Frontend
 
 ```bash
-cd data-furia-front
+cd ../data-furia-front
 npm install
 npm run dev          # inicia o frontend em modo de desenvolvimento
 ```
@@ -96,17 +114,3 @@ docker-compose down
 ## 📦 Deploy
 
 - 🌐 Confira a versão pública em: **[Data Furia](https://eliasnote.github.io/dataFuria/)** 🚀
-
-## 🎯 Desafio do Projeto
-
-**Challenge #2: Know Your Fan [HARD]**
-
-**Objetivo:**  
-Desenvolver um app ou solução (ex: notebook Python) que colete o máximo de informações sobre você mesmo como um fã de e-sports. _Know Your Fan_ é uma estratégia bem utilizada por clubes para conhecer mais do fã e assim oferecer experiências e serviços exclusivos.
-
-**Proposta:**
-
-- Coletar dados básicos (nome, endereço, CPF) e histórico de interesses, atividades, eventos e compras do último ano.
-- Realizar upload de documentos e validar a identificação da pessoa utilizando AI.
-- Vincular redes sociais ao perfil (Google, Facebook), lendo interações e atividades relacionadas a organizações de e-sports (ex: FURIA).
-- Compartilhar links de perfis em sites de e-sports e validar, via AI, se o conteúdo é relevante ao perfil do usuário.
